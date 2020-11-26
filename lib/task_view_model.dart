@@ -1,4 +1,4 @@
-import 'package:five_minutes/task_model.dart';
+import 'package:slice_of_time/task_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:state_notifier/state_notifier.dart';

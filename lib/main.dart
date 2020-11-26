@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:five_minutes/login_view.dart';
-import 'package:five_minutes/task_view.dart';
-import 'package:five_minutes/timer_view.dart';
+import 'package:slice_of_time/login_view.dart';
+import 'package:slice_of_time/task_view.dart';
+import 'package:slice_of_time/timer_view.dart';
 
-import 'package:five_minutes/user.dart';
+import 'package:slice_of_time/user.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -34,7 +34,7 @@ class MyApp extends ConsumerWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: user.data == null ? TimerView() : LoginView(),
+        home: user.data != null ? TimerView() : LoginView(),
       ),
       loading: () => const CircularProgressIndicator(),
       error: (err, stack) => Directionality(

@@ -1,5 +1,5 @@
-import 'package:five_minutes/button_model.dart';
-import 'package:five_minutes/timer_model.dart';
+import 'package:slice_of_time/button_model.dart';
+import 'package:slice_of_time/timer_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
