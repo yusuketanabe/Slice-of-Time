@@ -1,9 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:slice_of_time/task_view_model.dart';
 
-class WriteView extends StatelessWidget {
+final taskViewControllerProvider =
+    StateNotifierProvider((_) => TaskViewModelController());
+
+class WriteView extends HookWidget {
   String viewText = '';
+  final taskController = useProvider(taskViewControllerProvider);
 
   String user = FirebaseAuth.instance.currentUser.uid;
   @override
@@ -24,6 +31,7 @@ class WriteView extends StatelessWidget {
             FlatButton(
               onPressed: () async {
                 await addTask();
+                //taskController.getTaskList();
                 Navigator.pop(context);
               },
               child: Text('add'),
