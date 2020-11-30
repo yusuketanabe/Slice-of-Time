@@ -14,7 +14,8 @@ class _$TaskViewModelTearOff {
   const _$TaskViewModelTearOff();
 
 // ignore: unused_element
-  _TaskViewModel call({List<TaskModel> sortedTaskList = const []}) {
+  _TaskViewModel call(
+      {List<dynamic> sortedTaskList = const ['first', 'second']}) {
     return _TaskViewModel(
       sortedTaskList: sortedTaskList,
     );
@@ -27,7 +28,7 @@ const $TaskViewModel = _$TaskViewModelTearOff();
 
 /// @nodoc
 mixin _$TaskViewModel {
-  List<TaskModel> get sortedTaskList;
+  List<dynamic> get sortedTaskList;
 
   $TaskViewModelCopyWith<TaskViewModel> get copyWith;
 }
@@ -37,7 +38,7 @@ abstract class $TaskViewModelCopyWith<$Res> {
   factory $TaskViewModelCopyWith(
           TaskViewModel value, $Res Function(TaskViewModel) then) =
       _$TaskViewModelCopyWithImpl<$Res>;
-  $Res call({List<TaskModel> sortedTaskList});
+  $Res call({List<dynamic> sortedTaskList});
 }
 
 /// @nodoc
@@ -56,7 +57,7 @@ class _$TaskViewModelCopyWithImpl<$Res>
     return _then(_value.copyWith(
       sortedTaskList: sortedTaskList == freezed
           ? _value.sortedTaskList
-          : sortedTaskList as List<TaskModel>,
+          : sortedTaskList as List<dynamic>,
     ));
   }
 }
@@ -68,7 +69,7 @@ abstract class _$TaskViewModelCopyWith<$Res>
           _TaskViewModel value, $Res Function(_TaskViewModel) then) =
       __$TaskViewModelCopyWithImpl<$Res>;
   @override
-  $Res call({List<TaskModel> sortedTaskList});
+  $Res call({List<dynamic> sortedTaskList});
 }
 
 /// @nodoc
@@ -89,19 +90,19 @@ class __$TaskViewModelCopyWithImpl<$Res>
     return _then(_TaskViewModel(
       sortedTaskList: sortedTaskList == freezed
           ? _value.sortedTaskList
-          : sortedTaskList as List<TaskModel>,
+          : sortedTaskList as List<dynamic>,
     ));
   }
 }
 
 /// @nodoc
 class _$_TaskViewModel implements _TaskViewModel {
-  _$_TaskViewModel({this.sortedTaskList = const []})
+  _$_TaskViewModel({this.sortedTaskList = const ['first', 'second']})
       : assert(sortedTaskList != null);
 
-  @JsonKey(defaultValue: const [])
+  @JsonKey(defaultValue: const ['first', 'second'])
   @override
-  final List<TaskModel> sortedTaskList;
+  final List<dynamic> sortedTaskList;
 
   @override
   String toString() {
@@ -128,10 +129,10 @@ class _$_TaskViewModel implements _TaskViewModel {
 }
 
 abstract class _TaskViewModel implements TaskViewModel {
-  factory _TaskViewModel({List<TaskModel> sortedTaskList}) = _$_TaskViewModel;
+  factory _TaskViewModel({List<dynamic> sortedTaskList}) = _$_TaskViewModel;
 
   @override
-  List<TaskModel> get sortedTaskList;
+  List<dynamic> get sortedTaskList;
   @override
   _$TaskViewModelCopyWith<_TaskViewModel> get copyWith;
 }

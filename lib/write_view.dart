@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 class WriteView extends StatelessWidget {
   String viewText = '';
 
-  CollectionReference tasks = FirebaseFirestore.instance.collection('tasks');
-  User user = FirebaseAuth.instance.currentUser;
+  String user = FirebaseAuth.instance.currentUser.uid;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,12 +35,14 @@ class WriteView extends StatelessWidget {
   }
 
   Future<void> addTask() {
+    CollectionReference tasks =
+        FirebaseFirestore.instance.collection(user).doc().collection('tasks');
     return tasks
         .add({
           'task': viewText,
           'createdAt': Timestamp.now(),
           'updatedAt': Timestamp.now(),
-          'user': user,
+          'user': user.toString(),
         })
         .then((value) => print("Task Added"))
         .catchError((error) => print('Failed to add task: $error'));

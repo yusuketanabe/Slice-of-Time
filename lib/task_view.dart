@@ -27,6 +27,7 @@ class TaskView extends HookWidget {
             );
           return _buildRow(taskState.sortedTaskList[i]);
         },
+        itemCount: taskState.sortedTaskList.length,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(
@@ -40,7 +41,7 @@ class TaskView extends HookWidget {
     );
   }
 
-  Widget _buildRow(TaskModel task) => ListTile(
-        title: Text(task.task),
+  Widget _buildRow(String task) => ListTile(
+        title: Text(task),
       );
 }

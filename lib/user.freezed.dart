@@ -14,7 +14,7 @@ class _$UserStateTearOff {
   const _$UserStateTearOff();
 
 // ignore: unused_element
-  _UserState call({dynamic data}) {
+  _UserState call({User data}) {
     return _UserState(
       data: data,
     );
@@ -27,7 +27,7 @@ const $UserState = _$UserStateTearOff();
 
 /// @nodoc
 mixin _$UserState {
-  dynamic get data;
+  User get data;
 
   $UserStateCopyWith<UserState> get copyWith;
 }
@@ -36,7 +36,7 @@ mixin _$UserState {
 abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res>;
-  $Res call({dynamic data});
+  $Res call({User data});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
     Object data = freezed,
   }) {
     return _then(_value.copyWith(
-      data: data == freezed ? _value.data : data as dynamic,
+      data: data == freezed ? _value.data : data as User,
     ));
   }
 }
@@ -63,7 +63,7 @@ abstract class _$UserStateCopyWith<$Res> implements $UserStateCopyWith<$Res> {
           _UserState value, $Res Function(_UserState) then) =
       __$UserStateCopyWithImpl<$Res>;
   @override
-  $Res call({dynamic data});
+  $Res call({User data});
 }
 
 /// @nodoc
@@ -80,7 +80,7 @@ class __$UserStateCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
     Object data = freezed,
   }) {
     return _then(_UserState(
-      data: data == freezed ? _value.data : data,
+      data: data == freezed ? _value.data : data as User,
     ));
   }
 }
@@ -90,7 +90,7 @@ class _$_UserState implements _UserState {
   _$_UserState({this.data});
 
   @override
-  final dynamic data;
+  final User data;
 
   @override
   String toString() {
@@ -115,10 +115,10 @@ class _$_UserState implements _UserState {
 }
 
 abstract class _UserState implements UserState {
-  factory _UserState({dynamic data}) = _$_UserState;
+  factory _UserState({User data}) = _$_UserState;
 
   @override
-  dynamic get data;
+  User get data;
   @override
   _$UserStateCopyWith<_UserState> get copyWith;
 }

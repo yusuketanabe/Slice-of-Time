@@ -34,7 +34,7 @@ class MyApp extends ConsumerWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: user.data != null ? TimerView() : LoginView(),
+        home: user.data != null ? TaskView() : LoginView(),
       ),
       loading: () => const CircularProgressIndicator(),
       error: (err, stack) => Directionality(

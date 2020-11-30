@@ -8,7 +8,7 @@ class TaskModel {
   User user;
   DocumentReference reference;
 
-  TaskModel(DocumentSnapshot doc) {
+  TaskModel(QueryDocumentSnapshot doc) {
     this.reference = doc.reference;
     this.task = doc.data()['task'];
     this.createdAt = doc.data()['createdAt'];

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:slice_of_time/task_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,14 +9,19 @@ part 'task_view_model.freezed.dart';
 @freezed
 abstract class TaskViewModel with _$TaskViewModel {
   factory TaskViewModel({
-    @Default([]) List<TaskModel> sortedTaskList,
+    @Default(['first', 'second']) List sortedTaskList,
   }) = _TaskViewModel;
 }
 
 class TaskViewModelController extends StateNotifier<TaskViewModel> {
   TaskViewModelController() : super(TaskViewModel());
+  String user = FirebaseAuth.instance.currentUser.uid;
   getTaskList() {
-    final tasks = FirebaseFirestore.instance.collection('tasks').snapshots();
+    final tasks = FirebaseFirestore.instance
+        .collection(user)
+        .doc()
+        .collection('tasks')
+        .snapshots();
     tasks.listen((snapshot) {
       final docs = snapshot.docs;
       final taskList = docs.map((doc) => TaskModel(doc)).toList();

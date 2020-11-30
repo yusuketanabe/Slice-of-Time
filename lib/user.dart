@@ -6,6 +6,6 @@ part 'user.freezed.dart';
 @freezed
 abstract class UserState with _$UserState {
   factory UserState({
-    data,
+    User data,
   }) = _UserState;
 }
