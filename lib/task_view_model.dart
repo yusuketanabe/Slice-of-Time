@@ -16,17 +16,22 @@ abstract class TaskViewModel with _$TaskViewModel {
 class TaskViewModelController extends StateNotifier<TaskViewModel> {
   TaskViewModelController() : super(TaskViewModel());
   String user = FirebaseAuth.instance.currentUser.uid;
-  getTaskList() {
-    final tasks = FirebaseFirestore.instance
+  getTaskList() async {
+    final tasks = await FirebaseFirestore.instance
         .collection('users')
         .doc(user)
         .collection('tasks')
-        .snapshots();
+        .get();
+    /*
     tasks.listen((snapshot) {
       final docs = snapshot.docs;
       final taskList = docs.map((doc) => TaskModel(doc)).toList();
       taskList.sort((a, b) => b.createdAt.compareTo(a.createdAt));
       state = state.copyWith(sortedTaskList: taskList);
     });
+    */
+    final docs = tasks.docs;
+    final taskList = docs.map((doc) => TaskModel(doc)).toList();
+    state = state.copyWith(sortedTaskList: taskList);
   }
 }

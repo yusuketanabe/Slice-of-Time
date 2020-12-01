@@ -33,8 +33,8 @@ class TaskView extends HookWidget {
     );
   }
 
-  Widget _buildRow(String task) => ListTile(
-        title: Text(task),
+  Widget _buildRow(TaskModel task) => ListTile(
+        title: Text(task.task),
       );
 }
 

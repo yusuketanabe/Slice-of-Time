@@ -5,7 +5,7 @@ class TaskModel {
   String task;
   Timestamp createdAt;
   Timestamp updatedAt;
-  User user;
+  String user;
   DocumentReference reference;
 
   TaskModel(QueryDocumentSnapshot doc) {
