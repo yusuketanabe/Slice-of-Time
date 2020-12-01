@@ -18,8 +18,8 @@ class TaskViewModelController extends StateNotifier<TaskViewModel> {
   String user = FirebaseAuth.instance.currentUser.uid;
   getTaskList() {
     final tasks = FirebaseFirestore.instance
-        .collection(user)
-        .doc()
+        .collection('users')
+        .doc(user)
         .collection('tasks')
         .snapshots();
     tasks.listen((snapshot) {

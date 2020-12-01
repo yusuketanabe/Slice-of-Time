@@ -29,19 +29,26 @@ class TaskView extends HookWidget {
         },
         itemCount: taskState.sortedTaskList.length,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => WriteView(),
-            )),
-        child: Icon(Icons.add),
-        backgroundColor: Colors.lime,
-      ),
+      floatingActionButton: MyButton(),
     );
   }
 
   Widget _buildRow(String task) => ListTile(
         title: Text(task),
       );
+}
+
+class MyButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => WriteView(),
+        ),
+      ),
+      child: Icon(Icons.add),
+      backgroundColor: Colors.lime,
+    );
+  }
 }

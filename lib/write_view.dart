@@ -10,11 +10,12 @@ final taskViewControllerProvider =
 
 class WriteView extends HookWidget {
   String viewText = '';
-  final taskController = useProvider(taskViewControllerProvider);
 
   String user = FirebaseAuth.instance.currentUser.uid;
   @override
   Widget build(BuildContext context) {
+    final taskController = useProvider(taskViewControllerProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('タスク追加'),
@@ -31,7 +32,7 @@ class WriteView extends HookWidget {
             FlatButton(
               onPressed: () async {
                 await addTask();
-                //taskController.getTaskList();
+                taskController.getTaskList();
                 Navigator.pop(context);
               },
               child: Text('add'),
@@ -43,8 +44,10 @@ class WriteView extends HookWidget {
   }
 
   Future<void> addTask() {
-    CollectionReference tasks =
-        FirebaseFirestore.instance.collection(user).doc().collection('tasks');
+    CollectionReference tasks = FirebaseFirestore.instance
+        .collection('users')
+        .doc(user)
+        .collection('tasks');
     return tasks
         .add({
           'task': viewText,
