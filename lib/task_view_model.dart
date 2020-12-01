@@ -21,17 +21,12 @@ class TaskViewModelController extends StateNotifier<TaskViewModel> {
         .collection('users')
         .doc(user)
         .collection('tasks')
-        .get();
-    /*
+        .snapshots();
     tasks.listen((snapshot) {
       final docs = snapshot.docs;
       final taskList = docs.map((doc) => TaskModel(doc)).toList();
       taskList.sort((a, b) => b.createdAt.compareTo(a.createdAt));
       state = state.copyWith(sortedTaskList: taskList);
     });
-    */
-    final docs = tasks.docs;
-    final taskList = docs.map((doc) => TaskModel(doc)).toList();
-    state = state.copyWith(sortedTaskList: taskList);
   }
 }
