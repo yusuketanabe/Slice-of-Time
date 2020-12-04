@@ -12,29 +12,62 @@ class TaskView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final taskState = useProvider(taskViewControllerProvider.state);
+    final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('やること'),
-      ),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemBuilder: (context, i) {
-          if (i.isOdd)
-            return Divider(
-              color: Colors.black,
-              height: 4,
-            );
-          return _buildRow(taskState.sortedTaskList[i]);
-        },
-        itemCount: taskState.sortedTaskList.length,
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            floating: false,
+            pinned: true,
+            snap: false,
+            flexibleSpace: const FlexibleSpaceBar(
+              centerTitle: false,
+              title: Text(
+                'やること',
+              ),
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              <Widget>[
+                Container(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.all(16.0),
+                    itemBuilder: (context, i) {
+                      if (i.isOdd)
+                        return _buildCardOdd(taskState.sortedTaskList[i], size);
+                      return _buildCardEven(taskState.sortedTaskList[i], size);
+                    },
+                    itemCount: taskState.sortedTaskList.length,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       floatingActionButton: MyButton(),
     );
   }
 
-  Widget _buildRow(TaskModel task) => ListTile(
-        title: Text(task.task),
+  Widget _buildCardOdd(TaskModel task, Size size) => Card(
+        margin: EdgeInsets.symmetric(vertical: 3.0),
+        color: Colors.amber,
+        child: Container(
+          width: size.width,
+          height: size.height / 9,
+          child: Text(task.task),
+        ),
+      );
+
+  Widget _buildCardEven(TaskModel task, Size size) => Card(
+        margin: EdgeInsets.symmetric(vertical: 3.0),
+        child: Container(
+          width: size.width,
+          height: size.height / 9,
+          child: Text(task.task),
+        ),
       );
 }
 

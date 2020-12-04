@@ -31,7 +31,7 @@ class MyApp extends ConsumerWidget {
       data: (user) => MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          //primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: user.data != null ? TaskView() : LoginView(),
