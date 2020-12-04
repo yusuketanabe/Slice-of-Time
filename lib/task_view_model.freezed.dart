@@ -14,8 +14,7 @@ class _$TaskViewModelTearOff {
   const _$TaskViewModelTearOff();
 
 // ignore: unused_element
-  _TaskViewModel call(
-      {List<dynamic> sortedTaskList = const ['first', 'second']}) {
+  _TaskViewModel call({List<dynamic> sortedTaskList}) {
     return _TaskViewModel(
       sortedTaskList: sortedTaskList,
     );
@@ -97,10 +96,8 @@ class __$TaskViewModelCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_TaskViewModel implements _TaskViewModel {
-  _$_TaskViewModel({this.sortedTaskList = const ['first', 'second']})
-      : assert(sortedTaskList != null);
+  _$_TaskViewModel({this.sortedTaskList});
 
-  @JsonKey(defaultValue: const ['first', 'second'])
   @override
   final List<dynamic> sortedTaskList;
 

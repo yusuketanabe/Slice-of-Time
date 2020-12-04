@@ -31,11 +31,15 @@ class TaskView extends HookWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, i) {
-                if (i.isOdd)
-                  return _buildCardOdd(taskState.sortedTaskList[i], size);
-                return _buildCardEven(taskState.sortedTaskList[i], size);
+                return taskState.sortedTaskList == null
+                    ? Container()
+                    : i.isOdd
+                        ? _buildCardOdd(taskState.sortedTaskList[i], size)
+                        : _buildCardEven(taskState.sortedTaskList[i], size);
               },
-              childCount: taskState.sortedTaskList.length,
+              childCount: taskState.sortedTaskList == null
+                  ? 0
+                  : taskState.sortedTaskList.length,
             ),
           ),
         ],
