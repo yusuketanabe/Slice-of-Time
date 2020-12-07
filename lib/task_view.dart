@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final taskViewControllerProvider =
     StateNotifierProvider((_) => TaskViewModelController()..getTaskList());
+bool isLongPress = false;
 
 class TaskView extends HookWidget {
   @override
@@ -31,11 +32,9 @@ class TaskView extends HookWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, i) {
-                return taskState.sortedTaskList == null
-                    ? Container()
-                    : i.isOdd
-                        ? _buildCardOdd(taskState.sortedTaskList[i], size)
-                        : _buildCardEven(taskState.sortedTaskList[i], size);
+                return i.isOdd
+                    ? _buildCardOdd(taskState.sortedTaskList[i], size)
+                    : _buildCardEven(taskState.sortedTaskList[i], size);
               },
               childCount: taskState.sortedTaskList == null
                   ? 0
@@ -44,7 +43,14 @@ class TaskView extends HookWidget {
           ),
         ],
       ),
-      floatingActionButton: MyButton(),
+      floatingActionButton: InkWell(
+        onLongPress: () =>
+            isLongPress ? isLongPress = false : isLongPress = true,
+        child: MyButton(),
+      ),
+      floatingActionButtonLocation: isLongPress
+          ? FloatingActionButtonLocation.startFloat
+          : FloatingActionButtonLocation.endFloat,
     );
   }
 
